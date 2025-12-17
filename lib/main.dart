@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'NavBar.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,9 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter AMOV TP',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Coimbra'),
       initialRoute: "/",
       routes: {"/Category": (context) => const CategoryScreen()},
     );
@@ -49,28 +51,16 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: .center,
           children: [
             const Text('Coimbra'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                  height: 256,
-                  child: Image.asset('images/Coimbra.jpg'),
-                ),
+                SizedBox(height: 256, child: Image.asset('images/Coimbra.jpg')),
               ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      bottomNavigationBar: NavBar(),
     );
   }
 }
