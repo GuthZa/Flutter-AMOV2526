@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'NavBar.dart';
+import 'categorypage.dart';
+import 'homepage.dart';
+import 'navbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,29 +16,34 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter AMOV TP',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const MyHomePage(title: 'Coimbra'),
+      home: const HomeScreen(title: 'Coimbra'),
       initialRoute: "/",
       routes: {"/Category": (context) => const CategoryScreen()},
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _HomeScreenState extends State<HomeScreen> {
+  final List<Widget> _screens = <Widget>[
+    const HomePage(),
+    const CategoryScreen()
+  ];
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+      setState(() {
+        _selectedIndex = index;
+      });
   }
 
   @override
@@ -46,30 +53,14 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            const Text('Coimbra'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(height: 256, child: Image.asset('images/Coimbra.jpg')),
-              ],
-            ),
-          ],
-        ),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _screens,
       ),
-      bottomNavigationBar: NavBar(),
+      bottomNavigationBar: NavBar(
+        index: _selectedIndex,
+        onTap: _onItemTapped,
+      ),
     );
-  }
-}
-
-class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
