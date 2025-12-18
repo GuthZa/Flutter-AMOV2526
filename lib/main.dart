@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'NavBar.dart';
+import 'categorypage.dart';
+import 'homepage.dart';
+import 'navbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +34,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = <Widget>[
-    const MyHomePage(),
+    const HomePage(),
     const CategoryScreen()
   ];
 
@@ -60,36 +62,5 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: _onItemTapped,
       ),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: .center,
-        children: [
-          const Text('Coimbra'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(height: 256, child: Image.asset('images/Coimbra.jpg')),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text("Category Screen"));
   }
 }
