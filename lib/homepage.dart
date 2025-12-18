@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_amov2526/weather_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(height: 256, child: Image.asset('images/Coimbra.jpg')),
+
             ],
           ),
         ],
