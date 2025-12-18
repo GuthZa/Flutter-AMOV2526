@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//Stateless
 class NavBar extends StatelessWidget {
   const NavBar({super.key, required this.index, required this.onTap});
 
@@ -25,6 +24,7 @@ class NavBar extends StatelessWidget {
       ],
       currentIndex: index,
       selectedItemColor: Colors.amber[800],
+      unselectedItemColor: Colors.grey[700],
       onTap: (index) {
         onTap(index);
       },

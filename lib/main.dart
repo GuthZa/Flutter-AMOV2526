@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_amov2526/weather_forecast.dart';
+import 'package:flutter_amov2526/weather_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'categorypage.dart';
 import 'homepage.dart';
@@ -11,9 +14,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-
-
-
 
   // Future<void> initInc() async {
   //   var prefs = await SharedPreferences.getInstance();
@@ -53,11 +53,11 @@ class MyApp extends StatelessWidget {
     final List<String>? items = prefs.getStringList('items');
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter AMOV TP',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       home: const HomeScreen(title: 'Coimbra'),
       initialRoute: "/",
@@ -78,15 +78,23 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = <Widget>[
     const HomePage(),
-    const CategoryScreen()
+    const CategoryScreen(),
   ];
 
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-      setState(() {
-        _selectedIndex = index;
-      });
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  late Future<WeatherForecastResponse> _weatherFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _weatherFuture = WeatherService().fetchForecast();
   }
 
   @override
@@ -94,25 +102,56 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                widget.title,
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+              FutureBuilder(
+                future: _weatherFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return const Text('Erro ao obter o estado do tempo');
+                  } else {
+                    final weather = snapshot.data!;
+                    return Row(
+                      children: [
+                        Text(
+                          '${weather.data.first.tMax} ºC',
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                        WeatherIcon(weatherId: weather.data.first.weatherType),
+                      ],
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
       ),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _screens,
-      ),
-      bottomNavigationBar: NavBar(
-        index: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
+      body: IndexedStack(index: _selectedIndex, children: _screens),
+      bottomNavigationBar: NavBar(index: _selectedIndex, onTap: _onItemTapped),
     );
   }
 }
 
-class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
+class WeatherIcon extends StatelessWidget {
+  WeatherIcon({super.key, required this.weatherId});
+
+  final int weatherId;
+
+  late final String _url = weatherId >= 10
+      ? 'images/icons_ipma_weather/w_ic_d_$weatherId.svg'
+      : 'images/icons_ipma_weather/w_ic_d_0$weatherId.svg';
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SvgPicture.asset(_url, width: 65);
   }
 }
