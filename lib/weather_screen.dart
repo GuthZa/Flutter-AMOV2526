@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'weather_service.dart';
-import 'weather_forecast.dart';
+import 'services/weather_service.dart';
+import 'models/weather_forecast.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'weather_forecast.dart';
+import '../models/weather_forecast.dart';
 
 class WeatherService {
   static const _url =
