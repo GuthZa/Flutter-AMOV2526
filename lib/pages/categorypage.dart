@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/categories.dart';
 import '../models/category.dart';
+import 'interest_point_page.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -36,7 +37,10 @@ class _CategoryCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: () {
-        //TODO navigate to specific point of interest
+        Navigator.push(context,
+            MaterialPageRoute(
+                builder: (_) => PoiListScreen(categoryId: category.id)),
+        );
       },
       child: Card(
         elevation: 4,
@@ -49,12 +53,18 @@ class _CategoryCard extends StatelessWidget {
             Icon(
               category.icon,
               size: 48,
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme
+                  .of(context)
+                  .colorScheme
+                  .primary,
             ),
             const SizedBox(height: 12),
             Text(
               category.name,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .titleMedium,
             )
           ],
         ),

@@ -1,0 +1,37 @@
+{
+  "points_of_interest": [
+    {
+      "id": "se_velha",
+      "category": "monuments",
+      "name": "Sé Velha de Coimbra",
+      "short_description": "Catedral românica do século XII.",
+      "description": "A Sé Velha de Coimbra é um dos principais exemplos da arquitetura românica em Portugal, construída no século XII e classificada como Monumento Nacional.",
+      "image": "assets/images/se_velha.jpg",
+      "schedule": "09:00 - 18:00",
+      "average_price": "3€",
+      "location": "Largo da Sé Velha"
+    },
+    {
+      "id": "biblioteca_joanina",
+      "category": "museums",
+      "name": "Biblioteca Joanina",
+      "short_description": "Biblioteca barroca da Universidade de Coimbra.",
+      "description": "A Biblioteca Joanina é uma das bibliotecas barrocas mais espetaculares da Europa, situada no Paço das Escolas da Universidade de Coimbra.",
+      "image": "assets/images/biblioteca_joanina.jpg",
+      "schedule": "09:00 - 19:00",
+      "average_price": "12€",
+      "location": "Universidade de Coimbra"
+    },
+    {
+      "id": "leitão_bairrada",
+      "category": "gastronomy",
+      "name": "Leitão à Bairrada",
+      "short_description": "Prato tradicional da região.",
+      "description": "O Leitão à Bairrada é um prato típico português, assado em forno de lenha, muito apreciado na região de Coimbra.",
+      "image": "assets/images/leitao.jpg",
+      "schedule": "12:00 - 22:00",
+      "average_price": "15€",
+      "location": "Restaurantes tradicionais de Coimbra"
+    }
+  ]
+}

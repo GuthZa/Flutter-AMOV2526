@@ -4,8 +4,8 @@ import 'package:flutter_amov2526/services/weather_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../services/routes.dart';
 import 'categorypage.dart';
-import 'homepage.dart';
 import 'navbar.dart';
 
 void main() {
@@ -76,11 +76,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Widget> _screens = <Widget>[
-    const HomePage(),
-    const CategoryScreen(),
-  ];
-
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -108,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: IndexedStack(index: _selectedIndex, children: _screens),
+      body: IndexedStack(index: _selectedIndex, children: screens),
       bottomNavigationBar: NavBar(index: _selectedIndex, onTap: _onItemTapped),
     );
   }

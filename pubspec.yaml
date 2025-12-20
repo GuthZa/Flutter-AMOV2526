@@ -63,38 +63,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/coimbra.jpg
-    - images/cat.jpg
-    - images/icons_ipma_weather/w_ic_d_01.svg
-    - images/icons_ipma_weather/w_ic_d_02.svg
-    - images/icons_ipma_weather/w_ic_d_03.svg
-    - images/icons_ipma_weather/w_ic_d_04.svg
-    - images/icons_ipma_weather/w_ic_d_05.svg
-    - images/icons_ipma_weather/w_ic_d_06.svg
-    - images/icons_ipma_weather/w_ic_d_07.svg
-    - images/icons_ipma_weather/w_ic_d_08.svg
-    - images/icons_ipma_weather/w_ic_d_09.svg
-    - images/icons_ipma_weather/w_ic_d_10.svg
-    - images/icons_ipma_weather/w_ic_d_11.svg
-    - images/icons_ipma_weather/w_ic_d_12.svg
-    - images/icons_ipma_weather/w_ic_d_13.svg
-    - images/icons_ipma_weather/w_ic_d_14.svg
-    - images/icons_ipma_weather/w_ic_d_15.svg
-    - images/icons_ipma_weather/w_ic_d_16.svg
-    - images/icons_ipma_weather/w_ic_d_17.svg
-    - images/icons_ipma_weather/w_ic_d_18.svg
-    - images/icons_ipma_weather/w_ic_d_19.svg
-    - images/icons_ipma_weather/w_ic_d_20.svg
-    - images/icons_ipma_weather/w_ic_d_21.svg
-    - images/icons_ipma_weather/w_ic_d_22.svg
-    - images/icons_ipma_weather/w_ic_d_23.svg
-    - images/icons_ipma_weather/w_ic_d_24.svg
-    - images/icons_ipma_weather/w_ic_d_25.svg
-    - images/icons_ipma_weather/w_ic_d_26.svg
-    - images/icons_ipma_weather/w_ic_d_27.svg
-    - images/icons_ipma_weather/w_ic_d_28.svg
-    - images/icons_ipma_weather/w_ic_d_29.svg
-    - images/icons_ipma_weather/w_ic_d_30.svg
+    - assets/data/poi.json
+    - assets/images/coimbra.jpg
+    - assets/images/biblioteca_joanina.jpg
+    - assets/images/se_velha.jpg
+    - assets/images/leitao.jpg
+    - assets/images/icons_ipma_weather/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
