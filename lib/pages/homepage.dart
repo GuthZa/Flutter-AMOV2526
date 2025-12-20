@@ -20,10 +20,49 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(child: Image.asset('images/Coimbra.jpg', fit: BoxFit.fill)),
-      ],
+    return Container(
+      width: 500,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/Coimbra.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Container(
+          color: Colors.black.withValues(alpha: 0.4),
+          child: FutureBuilder<WeatherForecastResponse>(
+            future: _weatherFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator(color: Colors.white);
+              } else if (snapshot.hasError) {
+                return const Text(
+                  'Erro ao obter o estado do tempo',
+                  style: TextStyle(color: Colors.white),
+                );
+              } else {
+                final weather = snapshot.data!;
+                final textStyle = const TextStyle(
+                    fontSize: 48,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                );
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Coimbra',
+                      style: textStyle),
+                    const SizedBox(height: 12),
+                    Text(
+                      '${weather.data.first.tMax} °C',
+                      style: textStyle,
+                    )
+                  ],
+                );
+              }
+            },
+          ),
+        )
     );
   }
 }
