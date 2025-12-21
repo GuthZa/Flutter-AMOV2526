@@ -138,9 +138,10 @@ class _WeatherState extends State<Weather> {
           final weather = snapshot.data!;
 
           int weatherType = weather.data.first.weatherType;
+          // int isDay = weather.data.first.
           String url = weatherType >= 10
-              ? 'images/icons_ipma_weather/w_ic_d_$weatherType.svg'
-              : 'images/icons_ipma_weather/w_ic_d_0$weatherType.svg';
+              ? 'assets/imagens/icons_ipma_weather/w_ic_d_$weatherType.svg'
+              : 'assets/imagens/icons_ipma_weather/w_ic_d_0$weatherType.svg';
 
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

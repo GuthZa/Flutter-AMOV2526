@@ -14,10 +14,6 @@ class NavBar extends StatelessWidget {
         BottomNavigationBarItem(icon: Icon(Icons.home), label: ('Home')),
         BottomNavigationBarItem(icon: Icon(Icons.filter), label: ('Category')),
         BottomNavigationBarItem(
-          icon: Icon(Icons.location_on_outlined),
-          label: ('Interest points'),
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.star_border),
           label: ('Favorites'),
         ),

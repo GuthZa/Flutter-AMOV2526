@@ -20,11 +20,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 500,
+    return Center(
+      child: Container(
+        width: 700,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/coimbra.jpg"),
+            image: AssetImage("assets/imagens/coimbra.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -43,26 +44,23 @@ class _HomePageState extends State<HomePage> {
               } else {
                 final weather = snapshot.data!;
                 final textStyle = const TextStyle(
-                    fontSize: 48,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
+                  fontSize: 48,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 );
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Coimbra',
-                      style: textStyle),
+                    Text('Coimbra', style: textStyle),
                     const SizedBox(height: 12),
-                    Text(
-                      '${weather.data.first.tMax} °C',
-                      style: textStyle,
-                    )
+                    Text('${weather.data.first.tMax} °C', style: textStyle),
                   ],
                 );
               }
             },
           ),
-        )
+        ),
+      ),
     );
   }
 }

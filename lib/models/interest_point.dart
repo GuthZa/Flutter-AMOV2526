@@ -1,6 +1,5 @@
 class InterestPoint {
-  final String id;
-  final String category; //Category id
+  final int id;
   final String name;
   final String shortDescription;
   final String description;
@@ -11,7 +10,6 @@ class InterestPoint {
 
   InterestPoint({
     required this.id,
-    required this.category,
     required this.name,
     required this.shortDescription,
     required this.description,
@@ -24,7 +22,6 @@ class InterestPoint {
   factory InterestPoint.fromJson(Map<String, dynamic> json) {
     return InterestPoint(
       id: json['id'],
-      category: json['category'],
       name: json['name'],
       shortDescription: json['short_description'],
       description: json['description'],

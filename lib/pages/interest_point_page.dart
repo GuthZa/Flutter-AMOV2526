@@ -1,59 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_amov2526/services/InterestPointLoader.dart';
+import 'package:flutter_amov2526/models/category.dart';
+import 'package:flutter_amov2526/pages/interest_point_details_page.dart';
 
 import '../models/interest_point.dart';
 
-class PoiListScreen extends StatefulWidget {
-  final String categoryId;
+class PoiListScreen extends StatelessWidget {
+  final Category category;
 
-  const PoiListScreen({super.key, required this.categoryId});
-
-  @override
-  State<PoiListScreen> createState() => _PoiListScreenState();
-}
-
-class _PoiListScreenState extends State<PoiListScreen> {
-  late Future<List<InterestPoint>> _poisfuture;
-
-  @override
-  void initState() {
-    super.initState();
-    _poisfuture = loadPoIs();
-  }
+  const PoiListScreen({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
+    final pois = category.pois;
+
     return Scaffold(
       appBar: AppBar(title: const Text('Pontos de Interesse')),
-      body: FutureBuilder<List<InterestPoint>>(
-        future: _poisfuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text('Erro ao carregar os pontos de interesse'),
-            );
-          }
-
-          final filteredPois = snapshot.data!
-              .where((poi) => poi.category == widget.categoryId)
-              .toList();
-
-          if (filteredPois.isEmpty) {
-            return const Center(
-              child: Text('Sem pontos de interesse nesta categoria'),
-            );
-          }
-
-          return ListView.builder(
-            itemCount: filteredPois.length,
-            itemBuilder: (context, index) {
-              return InterestPointListTile(poi: filteredPois[index]);
-            },
-          );
+      body: ListView.builder(
+        itemCount: pois.length,
+        itemBuilder: (context, index) {
+          return InterestPointListTile(poi: pois[index]);
         },
       ),
     );
@@ -73,7 +38,7 @@ class InterestPointListTile extends StatelessWidget {
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Image.asset(
-            poi.imageUrl,
+            "assets/${poi.imageUrl}",
             width: 56,
             height: 56,
             fit: BoxFit.cover,
@@ -84,7 +49,10 @@ class InterestPointListTile extends StatelessWidget {
         subtitle: Text(poi.shortDescription),
         trailing: const Icon(Icons.arrow_forward_ios),
         onTap: () {
-          // Navigator.push → PoiDetailScreen (next step)
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => PoiDetailsScreen(poi: poi)),
+          );
         },
       ),
     );
