@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 700,
+        width: 900,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/imagens/coimbra.jpg"),

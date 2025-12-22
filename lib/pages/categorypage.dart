@@ -30,10 +30,11 @@ class CategoryScreen extends StatelessWidget {
           child: GridView.builder(
             itemCount: categories.length,
             //Creates a grid with equally sized and spaced tiles
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 220,
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
+              childAspectRatio: 0.85,
             ),
             itemBuilder: (context, index) {
               final Category category = categories[index];
